@@ -107,4 +107,54 @@ describe "Calculator" do
 			expect(Calculator.new.sqrt(8)).to be_a(Float)
 		end
 	end # End sqrt tests
+
+	describe "#memory" do
+		# Wanted to experiment with let
+		let(:test_calc){Calculator.new}
+
+		it 'returns nil when there is nothing saved' do
+			expect(Calculator.new.memory).to be_nil
+		end
+
+		# I'm unsure if this is the best way to test this.
+		it 'can recall a number' do
+			test_calc.memory=(8)
+			expect(test_calc.memory).to eq(8)
+		end
+
+		it 'clears the memory after recalled' do
+			test_calc.memory=(8)
+			test_calc.memory
+			expect(test_calc.memory).to be_nil
+		end
+	end # End memory tests
+
+	describe "#stringify" do
+		# Make a stringify calculator
+		let(:string_calc){Calculator.new(true)}
+
+		it 'returns string with add' do
+			expect(string_calc.add(1,2)).to eq("3")
+		end
+
+		it 'returns string with subtract' do
+			expect(string_calc.subtract(5,2)).to eq("3")
+		end
+
+		it 'returns string with multiply' do
+			expect(string_calc.multiply(5,2)).to eq("10")
+		end
+
+		it 'returns string with divide' do
+			expect(string_calc.divide(30,5)).to eq("6")
+		end
+
+		it 'returns string with pow' do
+			expect(string_calc.pow(5,2)).to eq("25.0")
+		end
+
+		it 'returns string with sqrt' do
+			expect(string_calc.sqrt(49)).to eq("7")
+		end # End stringify tests
+	end
 end
